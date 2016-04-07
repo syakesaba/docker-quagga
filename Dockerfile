@@ -5,5 +5,6 @@ RUN apt-get update -y && apt-get install -y quagga vim telnet net-tools && apt-g
 RUN for f in /usr/share/doc/quagga/examples/*;do cp $f /etc/quagga/`basename ${f%.sample}`;done
 RUN sed s/ospfd=no/ospfd=yes/ -i /etc/quagga/daemons
 RUN sed s/zebra=no/zebra=yes/ -i /etc/quagga/daemons
+RUN chown -R quagga:quaggavty /etc/quagga
 
 ENTRYPOINT ["/bin/bash"]
